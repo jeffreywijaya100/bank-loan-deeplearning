@@ -1,0 +1,18 @@
+About Dataset
+This dataset has 5000 samples with 14 features.
+
+Columns Descriptions :
+
+ID : customer ID
+Age : age of customer
+Experience : the number of years that the customer has experience
+Income : the customer's annual earnings
+ZIP Code : the postal code of the customer's location
+Family : the number of people in the customer's family
+CCAvg : the average monthly credit card spending
+Education : the level of customer's Education(undergraduate,graduate,professional)
+Mortgage : the Value of the customer's mortgage(the thing that the customer uses as a guarantee to the bank) Securities Account : whether the customer has a security account or not(it's also known as an investment account)
+CD Account : the customer has a CD account or not(a type of savings account that lets the customer earn interest on a fixed amount of money for a fixed period)
+Online : the customer uses the bank's online services or not
+CreditCard : the customer uses the bank's credit card or not
+Personal Loan : the customer is granted loans or not
