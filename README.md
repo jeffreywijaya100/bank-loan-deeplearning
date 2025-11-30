@@ -1,34 +1,109 @@
-# Binary classification to predict whether a person is granted a personal loan(1) or not(0) using BPNN.
-Charlie merupakan salah satu data scientist di sebuah bank terbesar di Indonesia. Dia diminta untuk membuat sebuah aplikasi yang membantu perusahaan untuk menentukan apakah sebuah pengajuan pinjaman (loan) yang dilakukan seseorang adalah dapat diterima atau ditolak (binary classification).
+# Deep Learning for Bank Loan Approval Prediction — Backpropagation Neural Network
+**Binary classification to predict whether a person is granted a personal loan(1) or not(0) using BPNN.**
 
-Buatlah arsitektur Back Propagation Neural Network (BPNN). Berikut adalah ketentuan yang perlu diperhatikan dalam pembuatan arsitektur BPNN.
+Pada proyek ini, saya berperan sebagai data scientist di salah satu bank terbesar di Indonesia dengan tanggung jawab mengembangkan sistem kecerdasan buatan untuk membantu perusahaan menentukan apakah pengajuan pinjaman seorang nasabah layak diterima atau ditolak. Solusi ini diharapkan mampu meningkatkan efektivitas proses underwriting secara otomatis berdasarkan karakteristik dan profil calon pemohon pinjaman. Sistem ini juga bertujuan untuk meningkatkan akurasi pengambilan keputusan kredit dan meminimalkan risiko kredit macet.
 
-a. Dataset yang diberikan memiliki beberapa problem, lakukan praproses data
-untuk menyelesaikan problem dari data tersebut. Sebutkan problem apa saja yang kalian
-temukan dari data yang diberikan, berikan penjelasan mengenai pendekatan apa yang kalian
-gunakan dan kenapa memilih pendekatan yang dipilih?
+## 📌 Tahapan dan Pendekatan Proyek
 
-b. Lakukan eksplorasi data terlebih dahulu untuk memahami permasalahan
-yang dihadapi terlebih dahulu. Selanjutnya pisahkan dataset menjadi train, test dan validation
-set dengan ketentuan (80 train, 10 val, 10 test)
+1. Data Understanding & Data Preprocessing
 
-c. Identifikasikan tantangan dan kesulitan dari data tabular yang diberikan.
-Hal ini terkait dengan Kualitas Data (Data Kotor dan Hilang, Outliers), Jenis Data (Heterogenitas
-Fitur, Encoding Fitur Kategorikal, Skala dan Normalisasi) dan Ketidakseimbangan Kelas (Class
-Imbalance).
+Dataset yang diberikan memiliki sejumlah permasalahan data, di antaranya:
 
-d. Buatlah arsitektur baseline dengan n nodes input layer, 2 buah hidden layer
-dengan banyak 2 × n nodes awal dan layer akhir banyak kelas nya (n, 2 × n, 2 × n, num_class).
-Keterangan: n adalah banyak input dan num_class adalah banyak kelas. Activation function
-untuk tiap hidden layer menggunakan ReLU
+  - Missing values pada beberapa kolom → ditangani dengan imputasi berbasis mean/median untuk numerikal dan modus untuk kategori
+  
+  - Outliers pada variabel numerik tertentu → dilakukan penanganan dengan winsorization dan IQR
+  
+  - Ketidakkonsistenan skala variabel → dilakukan normalisasi / standard scaling
+  
+  - Fitur kategorikal → ditangani dengan one-hot encoding
+  
+  - Masalah class imbalance (jumlah pemohon yang ditolak lebih tinggi dibanding diterima) → diselesaikan dengan pendekatan SMOTE (Synthetic Minority Oversampling Technique)
+  
+Pendekatan ini dipilih untuk memastikan model deep learning dapat mengenali pola data secara stabil dan mencegah bias terhadap kelas mayoritas.
 
-e. Setelah mengetahui hasil dari nomor (1d), modifikasi arsitektur
-tersebut untuk mendapatkan nilai akurasi optimal yang kalian dapatkan (kalian dapat
-menambahkan atau mengurangi arsitektur tersebut, atau mengganti hyperparameter, atau
-menggunakan tuning pada hyperparameter). Jelaskan alasan kalian untuk menggunakan
-pendekatan yang kalian pilih terkait dengan tantangan dan dan kesulitan yang dihadapi dalam
-data tabular tersebut (1c).
+2. Train / Val / Test Split
 
-f. Lakukan evaluasi unjuk kerja kedua arsitektur di atas pada test set dengan
-mencari nilai accuracy, precision, recall dan F1-Score. Dan berikan penjelasan mengenai hasilnya
-dengan rinci.
+Dataset dibagi menggunakan proporsi:
+
+  - 80% → training
+
+  - 10% → validation
+
+  - 10% → test
+  
+Pembagian ini bertujuan memastikan model dapat dilatih secara optimal dan dievaluasi secara adil pada unseen data.
+
+3. Tantangan Data Tabular
+
+Karakter data tabular menghadirkan sejumlah kesulitan, antara lain:
+
+  - Kualitas data (missing, outlier, noisy)
+  
+  - Keberagaman jenis fitur (numerikal & kategorikal)
+  
+  - Skala fitur yang tidak seragam
+  
+  - Distribusi label target yang tidak seimbang
+
+Semua tantangan tersebut diatasi melalui preprocessing dan penyesuaian arsitektur model.
+
+4. Baseline BPNN Architecture
+
+Baseline Backpropagation Neural Network dibangun dengan spesifikasi:
+
+  - Input layer: n nodes (jumlah fitur)
+  
+  - Hidden layer 1: 2 × n nodes — ReLU
+  
+  - Hidden layer 2: 2 × n nodes — ReLU
+  
+  - Output layer: num_class (binary classification)
+
+Arsitektur ini berfungsi sebagai titik awal untuk mengukur performa awal.
+
+5. Model Optimization
+
+Setelah memperhatikan performa baseline, arsitektur dimodifikasi untuk memperoleh kinerja optimal melalui:
+
+  - Penyesuaian jumlah layer & neuron
+  
+  - Penambahan dropout layer untuk mencegah overfitting
+  
+  - Penyesuaian learning rate
+  
+  - Tuning batch size dan epoch
+  
+  - Pemilihan optimizer terbaik (Adam)
+
+Pendekatan ini dilakukan sebagai respons terhadap kompleksitas data tabular serta tantangan class imbalance dan variasi skala fitur.
+
+6. Model Evaluation
+
+Kinerja kedua arsitektur (baseline & optimized) diukur pada test set menggunakan:
+
+  - Accuracy
+  
+  - Precision
+  
+  - Recall
+  
+  - F1-Score
+
+Hasil evaluasi menunjukkan peningkatan signifikan pada F1-score dan recall setelah optimasi, yang berarti sistem lebih mampu mendeteksi calon debitur yang benar-benar layak diberi pinjaman tanpa mengabaikan risiko.
+
+Model modifikasi arsitektur berhasil meningkatkan performa pada kelas minoritas (kelas 1) dengan kenaikan pada precision dan recall tanpa mengorbankan akurasi di kelas mayoritas (kelas 0). Perbaikan ini menghasilkan F1-score yang lebih tinggi pada kelas minoritas dan makro average yang lebih seimbang, membuat model lebih efektif dalam menangani ketidakseimbangan kelas. Modifikasi yang dilakukan, seperti tuning parameter dan penggunaan optimizer yang berbeda, terbukti membantu model dalam menangani tantangan data tabular yang kompleks dan meningkatkan generalisasi.
+
+
+## 💼 Real Business Impact
+
+Implementasi BPNN untuk loan approval prediction memberikan dampak nyata pada operasional bank:
+
+| Impact Bisnis                      | Penjelasan                                                                |
+| --------------------------------- | ------------------------------------------------------------------------- |
+| 🔹 Mengurangi risiko kredit macet | Model mengenali calon debitur berkualitas dengan lebih presisi            |
+| 🔹 Mempercepat proses persetujuan | Evaluasi otomatis tanpa perlu pengecekan manual                           |
+| 🔹 Efisiensi biaya operasional    | Mengurangi beban analis kredit & menghemat waktu                          |
+| 🔹 Customer Experience meningkat  | Peminjam menerima keputusan lebih cepat & transparan                      |
+| 🔹 Mendukung compliance           | Keputusan berbasis data mengurangi bias manusia                           |
+| 🔹 Scalable                       | Sistem bisa diintegrasikan ke API / core banking untuk screening otomatis |
+
