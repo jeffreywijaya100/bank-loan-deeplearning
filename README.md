@@ -3,9 +3,9 @@
 
 Pada proyek ini, saya berperan sebagai data scientist di salah satu bank terbesar di Indonesia dengan tanggung jawab mengembangkan sistem kecerdasan buatan untuk membantu perusahaan menentukan apakah pengajuan pinjaman seorang nasabah layak diterima atau ditolak. Solusi ini diharapkan mampu meningkatkan efektivitas proses underwriting secara otomatis berdasarkan karakteristik dan profil calon pemohon pinjaman. Sistem ini juga bertujuan untuk meningkatkan akurasi pengambilan keputusan kredit dan meminimalkan risiko kredit macet.
 
-## 📌 Tahapan dan Pendekatan Proyek
+## Tahapan dan Pendekatan Proyek
 
-1. Data Understanding & Data Preprocessing
+### 1. Data Understanding & Data Preprocessing
 
 Dataset yang diberikan memiliki sejumlah permasalahan data, di antaranya:
 
@@ -21,7 +21,7 @@ Dataset yang diberikan memiliki sejumlah permasalahan data, di antaranya:
   
 Pendekatan ini dipilih untuk memastikan model deep learning dapat mengenali pola data secara stabil dan mencegah bias terhadap kelas mayoritas.
 
-2. Train / Val / Test Split
+### 2. Train / Val / Test Split
 
 Dataset dibagi menggunakan proporsi:
 
@@ -33,7 +33,7 @@ Dataset dibagi menggunakan proporsi:
   
 Pembagian ini bertujuan memastikan model dapat dilatih secara optimal dan dievaluasi secara adil pada unseen data.
 
-3. Tantangan Data Tabular
+### 3. Tantangan Data Tabular
 
 Karakter data tabular menghadirkan sejumlah kesulitan, antara lain:
 
@@ -47,7 +47,7 @@ Karakter data tabular menghadirkan sejumlah kesulitan, antara lain:
 
 Semua tantangan tersebut diatasi melalui preprocessing dan penyesuaian arsitektur model.
 
-4. Baseline BPNN Architecture
+### 4. Baseline BPNN Architecture
 
 Baseline Backpropagation Neural Network dibangun dengan spesifikasi:
 
@@ -61,7 +61,7 @@ Baseline Backpropagation Neural Network dibangun dengan spesifikasi:
 
 Arsitektur ini berfungsi sebagai titik awal untuk mengukur performa awal.
 
-5. Model Optimization
+### 5. Model Optimization
 
 Setelah memperhatikan performa baseline, arsitektur dimodifikasi untuk memperoleh kinerja optimal melalui:
 
@@ -77,7 +77,7 @@ Setelah memperhatikan performa baseline, arsitektur dimodifikasi untuk memperole
 
 Pendekatan ini dilakukan sebagai respons terhadap kompleksitas data tabular serta tantangan class imbalance dan variasi skala fitur.
 
-6. Model Evaluation
+### 6. Model Evaluation
 
 Kinerja kedua arsitektur (baseline & optimized) diukur pada test set menggunakan:
 
