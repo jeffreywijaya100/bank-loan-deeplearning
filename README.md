@@ -89,6 +89,21 @@ Kinerja kedua arsitektur (baseline & optimized) diukur pada test set menggunakan
   
   - F1-Score
 
+
+  a. Evaluasi Model 1 (Arsitektur Baseline)
+  - Accuracy: 98%, yang menunjukkan bahwa model baseline dapat mengklasifikasikan data dengan baik secara keseluruhan.
+  - Precision dan Recall Kelas 0: Precision: 0.99 dan Recall: 0.98, menunjukkan bahwa model sangat baik dalam mengklasifikasikan kelas mayoritas (kelas 0) dengan sedikit kesalahan.    
+  - Precision dan Recall Kelas 1: Precision: 0.85 dan Recall: 0.94, yang menunjukkan bahwa model kadang salah mengklasifikasikan kelas 1 sebagai kelas 0, tetapi masih cukup baik dalam mendeteksi kelas minoritas ini.
+  - F1-Score: Kelas 0 memiliki F1-score yang sangat tinggi (0.99), sedangkan kelas 1 memiliki F1-score 0.89, yang lebih rendah tetapi cukup baik.
+  - Macro Avg dan Weighted Avg: Macro average dan weighted average F1-scores masing-masing adalah 0.94 dan 0.98. Ini menunjukkan bahwa baseline model sedikit kurang optimal dalam menangani kelas minoritas.
+  
+  b. Evaluasi Model 2 (Modifikasi Arsitektur)
+  - Accuracy: 99%, menunjukkan peningkatan performa yang signifikan dibanding model baseline.
+  - Precision dan Recall Kelas 0: Precision dan Recall untuk kelas 0 masing-masing adalah 1.00 dan 0.99, yang menunjukkan bahwa model dapat mengklasifikasikan kelas mayoritas dengan hampir sempurna.
+  - Precision dan Recall Kelas 1: Precision meningkat menjadi 0.91, dan recall menjadi 1.00, menunjukkan bahwa model sangat baik dalam mendeteksi kelas minoritas tanpa melewatkan satu pun instance dari kelas tersebut.
+  - F1-Score: Kelas 1 memiliki F1-score yang meningkat menjadi 0.95 dibandingkan baseline. Ini menunjukkan kemampuan model yang lebih seimbang dalam klasifikasi, terutama pada kelas minoritas.
+  - Macro Avg dan Weighted Avg: Macro average F1-score meningkat menjadi 0.97, dan weighted average tetap tinggi pada 0.99, menunjukkan perbaikan kinerja keseluruhan model.
+
 Hasil evaluasi menunjukkan peningkatan signifikan pada F1-score dan recall setelah optimasi, yang berarti sistem lebih mampu mendeteksi calon debitur yang benar-benar layak diberi pinjaman tanpa mengabaikan risiko.
 
 Model modifikasi arsitektur berhasil meningkatkan performa pada kelas minoritas (kelas 1) dengan kenaikan pada precision dan recall tanpa mengorbankan akurasi di kelas mayoritas (kelas 0). Perbaikan ini menghasilkan F1-score yang lebih tinggi pada kelas minoritas dan makro average yang lebih seimbang, membuat model lebih efektif dalam menangani ketidakseimbangan kelas. Modifikasi yang dilakukan, seperti tuning parameter dan penggunaan optimizer yang berbeda, terbukti membantu model dalam menangani tantangan data tabular yang kompleks dan meningkatkan generalisasi.
